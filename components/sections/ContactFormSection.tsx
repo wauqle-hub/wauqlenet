@@ -227,12 +227,13 @@ export default function ContactFormSection() {
                 onChange={(e) => setGuestName(e.target.value)}
                 onKeyDown={handleModalKeyDown}
                 disabled={isSubmitting}
+                autoFocus
                 className="w-full bg-transparent border-none border-b border-white/50 text-white placeholder:text-white/40 placeholder:italic outline-none py-2 text-lg transition-colors focus:border-white disabled:opacity-50"
               />
               
               <input
                 type="email"
-                placeholder="felix@waqul.com"
+                placeholder="felix@wauqle.com"
                 value={guestEmail}
                 onChange={(e) => setGuestEmail(e.target.value)}
                 onKeyDown={handleModalKeyDown}
