@@ -22,6 +22,13 @@ body {
   font-family: var(--font-monda), sans-serif;
 }
 
+@media (pointer: fine) and (hover: hover) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
 h1,
 h2,
 h3,

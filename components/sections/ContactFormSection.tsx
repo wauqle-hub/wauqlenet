@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, KeyboardEvent } from "react";
 import Image from "next/image";
 import InteractiveBackground from "@/components/ui/InteractiveBackground";
+import { useSession } from "next-auth/react";
 
 export default function ContactFormSection() {
   const [message, setMessage] = useState("");
@@ -14,10 +15,12 @@ export default function ContactFormSection() {
   const [sendError, setSendError] = useState<string | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!message.trim() || isSubmitted) return;
+  const { status } = useSession();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [guestName, setGuestName] = useState("");
+  const [guestEmail, setGuestEmail] = useState("");
 
+  const executeSend = async () => {
     setSendError(null);
     setIsSubmitting(true);
 
@@ -27,7 +30,7 @@ export default function ContactFormSection() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message, website }),
+        body: JSON.stringify({ message, website, guestName, guestEmail }),
       });
 
       const result = await response.json();
@@ -38,10 +41,13 @@ export default function ContactFormSection() {
 
       setIsSubmitted(true);
       setIsSubmitting(false);
+      setShowAuthModal(false);
 
       setTimeout(() => {
         setMessage("");
         setWebsite("");
+        setGuestName("");
+        setGuestEmail("");
         if (textareaRef.current) {
           textareaRef.current.style.height = "40px";
         }
@@ -56,6 +62,28 @@ export default function ContactFormSection() {
       setSendError("Failed to send. Please try again.");
       setIsSubmitting(false);
       setTimeout(() => setSendError(null), 5000);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!message.trim() || isSubmitted) return;
+
+    if (status === "unauthenticated") {
+      setShowAuthModal(true);
+    } else {
+      executeSend();
+    }
+  };
+
+  const handleModalKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      // Validate
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (guestName.trim() && emailRegex.test(guestEmail)) {
+        executeSend();
+      }
     }
   };
 
@@ -172,6 +200,49 @@ export default function ContactFormSection() {
           <p className="mt-4 text-red-500 text-sm">{sendError}</p>
         )}
       </motion.div>
+
+      {/* Guest Authentication Modal */}
+      <AnimatePresence>
+        {showAuthModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-md"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setShowAuthModal(false);
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-primary w-full max-w-md p-12 rounded-tr-[4rem] rounded-bl-[4rem] shadow-2xl flex flex-col gap-8"
+            >
+              <input
+                type="text"
+                placeholder="Felix"
+                value={guestName}
+                onChange={(e) => setGuestName(e.target.value)}
+                onKeyDown={handleModalKeyDown}
+                disabled={isSubmitting}
+                className="w-full bg-transparent border-none border-b border-white/50 text-white placeholder:text-white/40 placeholder:italic outline-none py-2 text-lg transition-colors focus:border-white disabled:opacity-50"
+              />
+              
+              <input
+                type="email"
+                placeholder="felix@waqul.com"
+                value={guestEmail}
+                onChange={(e) => setGuestEmail(e.target.value)}
+                onKeyDown={handleModalKeyDown}
+                disabled={isSubmitting}
+                className="w-full bg-transparent border-none border-b border-white/50 text-white placeholder:text-white/40 placeholder:italic outline-none py-2 text-lg transition-colors focus:border-white disabled:opacity-50"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cinzel, Monda } from "next/font/google";
 import GrainOverlay from "@/components/ui/GrainOverlay";
+import CustomCursor from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -132,13 +133,13 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <GrainOverlay />
+        <CustomCursor />
         <AuthProvider>
           <div className="site-wrapper">
             {children}
           </div>
           <div className="mobile-restriction-overlay">
             <div className="mobile-restriction-content">
-              <div className="mobile-restriction-sorry">Sorry !!!</div>
               <div className="mobile-restriction-divider"></div>
               <p className="mobile-restriction-desc">Our vision exceeds the limits of this screen</p>
             </div>

@@ -6,10 +6,6 @@ export async function POST(req: Request) {
     try {
         const session = await auth();
 
-        if (!session?.user) {
-            return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
-        }
-
         let payload;
         try {
             payload = await req.json();
@@ -17,7 +13,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ success: false, error: "Invalid JSON" }, { status: 400 });
         }
 
-        const { message, website } = payload;
+        const { message, website, guestName, guestEmail } = payload;
 
         if (website) {
             return NextResponse.json({ success: true });
@@ -27,12 +23,22 @@ export async function POST(req: Request) {
             return NextResponse.json({ success: false, error: "message failed" }, { status: 400 });
         }
 
+        // Require either a session OR a guestName & guestEmail
+        const isGuest = !session?.user && guestName && guestEmail;
+        if (!session?.user && !isGuest) {
+            return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+        }
+
+        const userName = session?.user?.name || guestName;
+        const userEmail = session?.user?.email || guestEmail;
+        const userId = session?.user?.id || "guest";
+
         const { error } = await supabase
             .from('messages')
             .insert({
-                user_id: session.user.id,
-                user_name: session.user.name,
-                user_email: session.user.email,
+                user_id: userId,
+                user_name: userName,
+                user_email: userEmail,
                 message: message,
             });
 
