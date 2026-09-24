@@ -88,8 +88,9 @@ export default function ContactFormSection() {
   };
 
   return (
-    <div 
+    <section 
       key="contact" 
+      aria-label="Contact Wauqlé"
       className="w-full h-full flex flex-col justify-center items-center relative overflow-hidden selection:bg-primary/20"
     >
       <Image
@@ -244,6 +245,6 @@ export default function ContactFormSection() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </section>
   );
 }

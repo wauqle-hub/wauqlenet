@@ -16,23 +16,23 @@ const monda = Monda({
 });
 
 export const metadata: Metadata = {
-  title: "Wauqle | Bespoke Luxury Fashion & Personalized Clothing",
-  description: "Wauqle is a bespoke luxury fashion brand focused on personalized and exclusive clothing experiences, offering quiet luxury and high-end custom suits.",
-  metadataBase: new URL("https://wauqle.net"),
+  title: "Wauqlé — Exclusively for You",
+  description: "Wauqlé — A space dedicated to individuality, personal expression, and absolute exclusivity. Discover an experience designed entirely, exclusively for you.",
+  metadataBase: new URL("https://www.wauqle.net"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Wauqle | Bespoke Luxury Fashion",
-    description: "Exclusive networking platform providing direct access to bespoke luxury fashion services.",
-    url: "https://wauqle.net",
-    siteName: "Wauqle",
+    title: "Wauqlé — Exclusively for You",
+    description: "Wauqlé — A space dedicated to individuality, personal expression, and absolute exclusivity. Discover an experience designed entirely, exclusively for you.",
+    url: "https://www.wauqle.net",
+    siteName: "Wauqlé",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Wauqle Luxury Fashion",
+        alt: "Wauqlé",
       },
     ],
     locale: "en_US",
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wauqle | Bespoke Luxury Fashion",
-    description: "Exclusive networking platform providing direct access to bespoke luxury fashion services.",
+    title: "Wauqlé — Exclusively for You",
+    description: "Wauqlé — A space dedicated to individuality, personal expression, and absolute exclusivity. Discover an experience designed entirely, exclusively for you.",
     site: "@wauqle_fashion",
     creator: "@wauqle_fashion",
     images: ["/logo.png"],
@@ -58,56 +58,47 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://wauqle.com/#organization",
-      "name": "Wauqle",
-      "alternateName": "Wauqle Luxury Fashion",
-      "url": "https://wauqle.com",
+      "@id": "https://www.wauqle.net/#organization",
+      "name": "Wauqlé",
+      "url": "https://www.wauqle.net",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://wauqle.com/logo.png"
+        "url": "https://www.wauqle.net/logo.png"
       },
       "sameAs": [
         "https://instagram.com/wauqle_fashion",
         "https://www.facebook.com/wauqlefashion/",
         "https://www.youtube.com/@wauqle_fashion",
-        "https://x.com/wauqle_fashion",
-        "https://wauqle.net"
+        "https://x.com/wauqle_fashion"
       ]
     },
     {
       "@type": "Brand",
-      "@id": "https://wauqle.com/#brand",
-      "name": "Wauqle",
-      "description": "Bespoke luxury fashion brand focused on personalized and exclusive clothing experiences",
+      "@id": "https://www.wauqle.net/#brand",
+      "name": "Wauqlé",
+      "description": "A space dedicated to individuality, personal expression, and absolute exclusivity.",
       "brand": {
         "@type": "Brand",
-        "name": "Wauqle"
+        "name": "Wauqlé"
       }
     },
     {
       "@type": "WebSite",
-      "@id": "https://wauqle.com/#website",
-      "url": "https://wauqle.com",
-      "name": "Wauqle",
+      "@id": "https://www.wauqle.net/#website",
+      "url": "https://www.wauqle.net",
+      "name": "Wauqlé",
       "publisher": {
-        "@id": "https://wauqle.com/#organization"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://wauqle.com/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+        "@id": "https://www.wauqle.net/#organization"
       }
     },
     {
-      "@type": "Service",
-      "@id": "https://wauqle.net/#service",
-      "name": "Wauqle Contact Platform",
-      "description": "Exclusive networking platform providing direct access to bespoke luxury fashion services",
-      "provider": {
-        "@id": "https://wauqle.com/#organization"
-      },
-      "url": "https://wauqle.net",
-      "sameAs": "https://wauqle.com"
+      "@type": "WebPage",
+      "@id": "https://www.wauqle.net/#webpage",
+      "url": "https://www.wauqle.net",
+      "name": "Wauqlé — Exclusively for You",
+      "isPartOf": {
+        "@id": "https://www.wauqle.net/#website"
+      }
     }
   ]
 };

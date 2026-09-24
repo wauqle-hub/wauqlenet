@@ -47,6 +47,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
         }),
     ],
+    cookies: {
+        sessionToken: {
+            name: process.env.NODE_ENV === "production" ? "__Secure-authjs.session-token" : "authjs.session-token",
+            options: {
+                httpOnly: true,
+                sameSite: "strict",
+                path: "/",
+                secure: process.env.NODE_ENV === "production",
+            },
+        },
+    },
     callbacks: {
         async session({ session, token, user }) {
             // Pass the user's first name to the session

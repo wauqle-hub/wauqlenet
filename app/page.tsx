@@ -81,10 +81,9 @@ export default function Home() {
         style={{ position: 'absolute', width: '1px', height: '1px', padding: '0', margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: '0' }}
       >
         <p>
-          Wauqle is a bespoke luxury fashion brand offering an exclusive personalized clothing experience. 
-          Our collection features high-end custom suits for women, catering to those seeking luxury self-reward fashion 
-          and a quiet luxury wardrobe. Wauqle defines the intersection of personalization and premium craftsmanship 
-          in the modern luxury landscape.
+          Wauqlé is a space dedicated to individuality, personal meaning, and expression.
+          We believe in the relationship between a person and what is personally theirs.
+          Discover an experience designed entirely, exclusively for you.
         </p>
       </section>
     </main>

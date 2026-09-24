@@ -14,7 +14,7 @@ export default function HeroSection({ session, loading, firstName }: HeroSection
   const y = useTransform(scrollYProgress, [0, 0.3], [0, -50]);
 
   return (
-    <div
+    <section
       key="hero"
       onClick={() => window.open("https://www.wauqle.com", "_blank", "noopener,noreferrer")}
       className="w-full h-full flex flex-col justify-center items-center text-center relative overflow-hidden cursor-pointer selection:bg-primary/20"
@@ -35,13 +35,13 @@ export default function HeroSection({ session, loading, firstName }: HeroSection
       >
         <AnimatePresence mode="wait">
           {session ? (
-            <motion.div
+            <motion.h1
               key="personalized"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.05 }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="h-[50vh] flex flex-col items-center justify-center"
+              className="h-[50vh] flex flex-col items-center justify-center m-0 p-0 font-normal"
             >
               <span 
                 className="font-heading text-lg md:text-xl lg:text-2xl font-light tracking-[0.35em] text-foreground uppercase text-center"
@@ -49,36 +49,36 @@ export default function HeroSection({ session, loading, firstName }: HeroSection
                 EXCLUSIVELY FOR
               </span>
               <span
-                className="font-heading text-primary uppercase leading-none text-center font-medium tracking-tight mt-4"
+                className="font-heading text-primary uppercase leading-none text-center font-medium tracking-tight mt-4 block"
                 style={{ 
                   fontSize: "clamp(3.5rem, 12vw, 16rem)",
                 }}
               >
                 {firstName}
               </span>
-            </motion.div>
+            </motion.h1>
           ) : (
-            <motion.div
+            <motion.h1
               key="placeholder"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8 }}
-              className="h-[50vh] flex flex-col items-center justify-center"
+              className="h-[50vh] flex flex-col items-center justify-center m-0 p-0 font-normal"
             >
               <span 
                 className="font-heading text-lg md:text-xl lg:text-2xl font-light tracking-[0.35em] text-foreground uppercase text-center"
               >
                 EXCLUSIVELY FOR
               </span>
-              <h1
-                className="font-heading text-primary uppercase leading-none text-center font-medium tracking-tight mt-4"
+              <span
+                className="font-heading text-primary uppercase leading-none text-center font-medium tracking-tight mt-4 block"
                 style={{ 
                   fontSize: "clamp(3.5rem, 12vw, 16rem)",
                 }}
               >
                 YOU
-              </h1>
+              </span>
               {loading && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -89,10 +89,10 @@ export default function HeroSection({ session, loading, firstName }: HeroSection
                   Authenticating...
                 </motion.div>
               )}
-            </motion.div>
+            </motion.h1>
           )}
         </AnimatePresence>
       </motion.div>
-    </div>
+    </section>
   );
 }
