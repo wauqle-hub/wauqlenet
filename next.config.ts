@@ -49,12 +49,12 @@ const nextConfig: NextConfig = {
       {
         source: '/index.html',
         destination: '/',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/index.php',
         destination: '/',
-        permanent: true,
+        statusCode: 301,
       },
     ]
   },
