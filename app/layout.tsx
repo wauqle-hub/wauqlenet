@@ -16,14 +16,14 @@ const monda = Monda({
 });
 
 export const metadata: Metadata = {
-  title: "Wauqlé — Exclusively for You",
+  title: "Wauqlé — Exclusively for You | Connexions",
   description: "Wauqlé — A space dedicated to individuality, personal expression, and absolute exclusivity. Discover an experience designed entirely, exclusively for you.",
   metadataBase: new URL("https://www.wauqle.net"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Wauqlé — Exclusively for You",
+    title: "Wauqlé — Exclusively for You | Connexions",
     description: "Wauqlé — A space dedicated to individuality, personal expression, and absolute exclusivity. Discover an experience designed entirely, exclusively for you.",
     url: "https://www.wauqle.net",
     siteName: "Wauqlé",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wauqlé — Exclusively for You",
+    title: "Wauqlé — Exclusively for You | Connexions",
     description: "Wauqlé — A space dedicated to individuality, personal expression, and absolute exclusivity. Discover an experience designed entirely, exclusively for you.",
     site: "@wauqle_fashion",
     creator: "@wauqle_fashion",
@@ -95,7 +95,7 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": "https://www.wauqle.net/#webpage",
       "url": "https://www.wauqle.net",
-      "name": "Wauqlé — Exclusively for You",
+      "name": "Wauqlé — Exclusively for You | Connexions",
       "isPartOf": {
         "@id": "https://www.wauqle.net/#website"
       }
@@ -113,6 +113,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light" style={{ colorScheme: "light" }} suppressHydrationWarning>
       <head>
+        <link rel="preload" as="image" href="/hero-bg-v3.png" media="(min-width: 768px)" />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
         <script
           type="application/ld+json"

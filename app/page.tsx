@@ -2,7 +2,7 @@
 
 import { ReverseStackScroll } from "@/components/ui/ReverseStackScroll";
 import { useSession, signIn } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import HeroSection from "@/components/sections/HeroSection";
 import ContactFormSection from "@/components/sections/ContactFormSection";
 import Script from "next/script";
@@ -11,13 +11,26 @@ export default function Home() {
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth <= 767;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Dynamic Document Title
   useEffect(() => {
     if (session?.user?.name) {
       const name = session.user.name.trim().split(/\s+/)[0];
-      document.title = name ? `Wauqle - ${name}` : "Wauqle";
+      document.title = name ? `Wauqlé — ${name} | Connexions` : "Wauqlé — Exclusively for You | Connexions";
     } else {
-      document.title = "Wauqle";
+      document.title = "Wauqlé — Exclusively for You | Connexions";
     }
   }, [session]);
 
@@ -64,7 +77,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="w-full bg-background font-body selection:bg-primary selection:text-secondary text-foreground relative">
+    <main suppressHydrationWarning className="w-full bg-background font-body selection:bg-primary selection:text-secondary text-foreground relative">
       <Script 
         src="https://accounts.google.com/gsi/client" 
         strategy="afterInteractive"
@@ -72,7 +85,7 @@ export default function Home() {
           window.dispatchEvent(new Event('google-gsi-loaded'));
         }}
       />
-      <ReverseStackScroll slides={slides} />
+      {!isMobile && <ReverseStackScroll slides={slides} />}
       
       {/* Entity SEO + Knowledge Graph Signal Boost */}
       <section 

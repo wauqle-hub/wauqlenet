@@ -95,7 +95,8 @@ export default function ContactFormSection() {
     >
       <Image
         src="/contact-bg-v2.png"
-        alt="Contact Background"
+        alt=""
+        aria-hidden="true"
         fill
         className="object-cover"
       />
@@ -118,6 +119,7 @@ export default function ContactFormSection() {
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
               className="hidden"
+              aria-hidden="true"
               tabIndex={-1}
               autoComplete="off"
             />
@@ -141,6 +143,7 @@ export default function ContactFormSection() {
                     onBlur={() => setIsFocused(false)}
                     rows={1}
                     placeholder="Wauqle reads every message personally..."
+                    aria-label="Message"
                     disabled={isSubmitted || isSubmitting}
                     className={`w-full bg-transparent border-none border-b-[1px] border-[#777] outline-none resize-none text-[18px] leading-[1.8] text-left pr-[70px] pt-4 pb-2 transition-all duration-300 placeholder:text-primary/40 placeholder:italic min-h-[40px] whitespace-pre-wrap break-words overflow-hidden ${isSubmitted ? 'text-transparent' : 'text-foreground'}`}
                     style={{ minHeight: "40px" }}
@@ -155,6 +158,7 @@ export default function ContactFormSection() {
 
                   <button
                     type="submit"
+                    aria-label="Send message"
                     disabled={!message.trim() || isSubmitted || isSubmitting}
                     className="absolute right-0 bottom-[6px] cursor-pointer transition-transform duration-400 ease-out hover:scale-110 active:scale-95 disabled:opacity-0 z-20"
                   >
@@ -227,6 +231,7 @@ export default function ContactFormSection() {
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
                 onKeyDown={handleModalKeyDown}
+                aria-label="Name"
                 disabled={isSubmitting}
                 autoFocus
                 className="w-full bg-transparent border-none border-b border-white/50 text-white placeholder:text-white/40 placeholder:italic outline-none py-2 text-lg transition-colors focus:border-white disabled:opacity-50"
@@ -238,6 +243,7 @@ export default function ContactFormSection() {
                 value={guestEmail}
                 onChange={(e) => setGuestEmail(e.target.value)}
                 onKeyDown={handleModalKeyDown}
+                aria-label="Email"
                 disabled={isSubmitting}
                 className="w-full bg-transparent border-none border-b border-white/50 text-white placeholder:text-white/40 placeholder:italic outline-none py-2 text-lg transition-colors focus:border-white disabled:opacity-50"
               />

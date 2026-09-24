@@ -20,9 +20,9 @@ export default function HeroSection({ session, loading, firstName }: HeroSection
     >
       <Image
         src="/hero-bg-v3.png"
-        alt="Wauqle Hero Background"
+        alt=""
+        aria-hidden="true"
         fill
-        priority
         className="object-cover"
       />
       
