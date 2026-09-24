@@ -16,8 +16,7 @@ export default function HeroSection({ session, loading, firstName }: HeroSection
   return (
     <section
       key="hero"
-      onClick={() => window.open("https://www.wauqle.com", "_blank", "noopener,noreferrer")}
-      className="w-full h-full flex flex-col justify-center items-center text-center relative overflow-hidden cursor-pointer selection:bg-primary/20"
+      className="w-full h-full flex flex-col justify-center items-center text-center relative overflow-hidden selection:bg-primary/20"
     >
       <Image
         src="/hero-bg-v3.png"
@@ -41,7 +40,8 @@ export default function HeroSection({ session, loading, firstName }: HeroSection
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.05 }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="h-[50vh] flex flex-col items-center justify-center m-0 p-0 font-normal"
+              className="h-[50vh] flex flex-col items-center justify-center m-0 p-0 font-normal cursor-pointer"
+              onClick={() => window.open("https://www.wauqle.com", "_blank", "noopener,noreferrer")}
             >
               <span 
                 className="font-heading text-lg md:text-xl lg:text-2xl font-light tracking-[0.35em] text-foreground uppercase text-center"
@@ -64,7 +64,8 @@ export default function HeroSection({ session, loading, firstName }: HeroSection
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8 }}
-              className="h-[50vh] flex flex-col items-center justify-center m-0 p-0 font-normal"
+              className="h-[50vh] flex flex-col items-center justify-center m-0 p-0 font-normal cursor-pointer"
+              onClick={() => window.open("https://www.wauqle.com", "_blank", "noopener,noreferrer")}
             >
               <span 
                 className="font-heading text-lg md:text-xl lg:text-2xl font-light tracking-[0.35em] text-foreground uppercase text-center"
